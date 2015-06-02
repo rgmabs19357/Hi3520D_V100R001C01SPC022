@@ -1,0 +1,963 @@
+--CmdLine : chk_bsdl jtag_chk_ddr.bsdl jtag.bsdl -f pinmap.txt
+--    jtag_chk_ddr.bsdl : mtime=2013-04-07,10:55:36; md5code=4e21c15d2bef22b18355d24a3cb44eb6
+--    pinmap.txt : mtime=2013-04-27,14:10:56; md5code=17666e41404818e559d9b81935ac1898
+
+--******************************************************
+--
+--Copyright(c) 2012,Huawei Technologies Co., Ltd.
+--All Rights Reserved
+--
+--Project Name            : 
+--File Name               : ../data/jtag.bsdl
+--Date                    : 2012-11-15  20:30:16
+--JtagBuilder    version  : 2012-11-14 No.1 V1.4
+--PadOrderReader version  : 2010-11-21 No.1
+--vParser version         : 2012-08-06 No.1 
+--ioParser version        : 2012-11-14 No.1
+--CommonCfgParser version  : 2011-09-08 No.1
+--CommonCfgParser2 version : 2010-12-17 No.1
+--Author           : 
+--Email            : 
+--
+--Module Name      : HI3520D_TOP
+--Abstract         : 
+--Called By        : 
+--
+--Modification History
+--------------------------------------------------------
+--$Log: $
+--
+--
+--
+--******************************************************
+
+
+entity HI3520D_TOP is
+
+    generic (PHYSICAL_PIN_MAP : string := "DW");
+
+port (
+    SATA_RX0P    : linkage  bit;
+    SATA_RX0M    : linkage  bit;
+    SATA_RX1P    : linkage  bit;
+    SATA_RX1M    : linkage  bit;
+    JTAG_EN      : in       bit;
+    RSTN         : in       bit;
+    TEST_MODE    : in       bit;
+    SATA_REFCLKM : linkage  bit;
+    SATA_REFCLKP : linkage  bit;
+    XIN          : linkage  bit;
+    SATA_TX0P    : linkage  bit;
+    SATA_TX0M    : linkage  bit;
+    SATA_TX1P    : linkage  bit;
+    SATA_TX1M    : linkage  bit;
+    XOUT         : linkage  bit;
+    HDMI_TX0N    : linkage  bit;
+    HDMI_TX0P    : linkage  bit;
+    HDMI_TX1N    : linkage  bit;
+    HDMI_TX1P    : linkage  bit;
+    HDMI_TX2N    : linkage  bit;
+    HDMI_TX2P    : linkage  bit;
+    HDMI_TXCN    : linkage  bit;
+    HDMI_TXCP    : linkage  bit;
+    USB0_DP      : linkage  bit;
+    USB0_DM      : linkage  bit;
+    USB1_DP      : linkage  bit;
+    USB1_DM      : linkage  bit;
+    SATA_REXT    : linkage  bit;
+    ETH_RSET     : linkage  bit;
+    ETH_RTT      : linkage  bit;
+    ETH_RXIN     : linkage  bit;
+    ETH_RXIP     : linkage  bit;
+    ETH_TXON     : linkage  bit;
+    ETH_TXOP     : linkage  bit;
+    RTC_XIN      : linkage  bit;
+    RTC_XOUT     : linkage  bit;
+    DDR_CLK1_P   : out      bit;
+    DDR_CLK1_N   : out      bit;
+    DDR_RESET_N  : out      bit;
+    DDR_CKE      : out      bit;
+    DDR_ODT      : out      bit;
+    DDR_RAS_N    : out      bit;
+    DDR_CAS_N    : out      bit;
+    DDR_WE_N     : out      bit;
+    DDR_BA0      : out      bit;
+    DDR_BA1      : out      bit;
+    DDR_BA2      : out      bit;
+    DDR_A0       : out      bit;
+    DDR_A1       : out      bit;
+    DDR_A2       : out      bit;
+    DDR_A3       : out      bit;
+    DDR_A4       : out      bit;
+    DDR_A5       : out      bit;
+    DDR_A6       : out      bit;
+    DDR_A7       : out      bit;
+    DDR_A8       : out      bit;
+    DDR_A9       : out      bit;
+    DDR_A10      : out      bit;
+    DDR_A11      : out      bit;
+    DDR_A12      : out      bit;
+    DDR_A13      : out      bit;
+    DDR_A14      : out      bit;
+    DDR_DQS0_P   : inout    bit;
+    DDR_DQS1_P   : inout    bit;
+    DDR_DQS0_N   : inout    bit;
+    DDR_DQS1_N   : inout    bit;
+    DDR_DM0      : inout    bit;
+    DDR_DM1      : inout    bit;
+    DDR_DQ0      : inout    bit;
+    DDR_DQ1      : inout    bit;
+    DDR_DQ2      : inout    bit;
+    DDR_DQ3      : inout    bit;
+    DDR_DQ4      : inout    bit;
+    DDR_DQ5      : inout    bit;
+    DDR_DQ6      : inout    bit;
+    DDR_DQ7      : inout    bit;
+    DDR_DQ8      : inout    bit;
+    DDR_DQ9      : inout    bit;
+    DDR_DQ10     : inout    bit;
+    DDR_DQ11     : inout    bit;
+    DDR_DQ12     : inout    bit;
+    DDR_DQ13     : inout    bit;
+    DDR_DQ14     : inout    bit;
+    DDR_DQ15     : inout    bit;
+    VI_ADC_CLK   : inout    bit;
+    VIU0_CLK     : inout    bit;
+    VIU0_DAT0    : inout    bit;
+    VIU0_DAT1    : inout    bit;
+    VIU0_DAT2    : inout    bit;
+    VIU0_DAT3    : inout    bit;
+    VIU0_DAT4    : inout    bit;
+    VIU0_DAT5    : inout    bit;
+    VIU0_DAT6    : inout    bit;
+    VIU0_DAT7    : inout    bit;
+    VIU1_CLK     : inout    bit;
+    VIU1_DAT0    : inout    bit;
+    VIU1_DAT1    : inout    bit;
+    VIU1_DAT2    : inout    bit;
+    VIU1_DAT3    : inout    bit;
+    VIU1_DAT4    : inout    bit;
+    VIU1_DAT5    : inout    bit;
+    VIU1_DAT6    : inout    bit;
+    VIU1_DAT7    : inout    bit;
+    VGA_HS       : inout    bit;
+    VGA_VS       : inout    bit;
+    AIO_MCLK     : inout    bit;
+    AIO_BCLK_TX  : inout    bit;
+    AIO_WS_TX    : inout    bit;
+    AIO_SD_TX    : inout    bit;
+    AIO_BCLK_RX  : inout    bit;
+    AIO_WS_RX    : inout    bit;
+    AIO_SD_RX    : inout    bit;
+    SPI_SCLK     : inout    bit;
+    SPI_SDO      : inout    bit;
+    SPI_SDI      : inout    bit;
+    SPI_CSN0     : inout    bit;
+    SPI_CSN1     : inout    bit;
+    I2C_SDA      : inout    bit;
+    I2C_SCL      : inout    bit;
+    UART0_RXD    : inout    bit;
+    UART0_TXD    : inout    bit;
+    UART1_RTSN   : inout    bit;
+    UART1_RXD    : inout    bit;
+    UART1_CTSN   : inout    bit;
+    UART1_TXD    : inout    bit;
+    UART2_RXD    : inout    bit;
+    UART2_TXD    : inout    bit;
+    IR_IN        : inout    bit;
+    SFC_DIO      : inout    bit;
+    SFC_WP_IO2   : inout    bit;
+    SFC_CLK      : inout    bit;
+    SFC_DOI      : inout    bit;
+    SFC_HOLD_IO3 : inout    bit;
+    SFC_CS0N     : inout    bit;
+    SFC_CS1N     : inout    bit;
+    JTAG_TRSTN   : in       bit;
+    JTAG_TCK     : in       bit;
+    JTAG_TMS     : in       bit;
+    JTAG_TDO     : out      bit;
+    JTAG_TDI     : in       bit;
+    WDG_RSTN     : inout    bit;
+    USB0_OVRCUR  : inout    bit;
+    USB0_PWREN   : inout    bit;
+    USB1_OVRCUR  : inout    bit;
+    USB1_PWREN   : inout    bit;
+    HDMI_HOTPLUG : inout    bit;
+    HDMI_CEC     : inout    bit;
+    HDMI_SDA     : inout    bit;
+    HDMI_SCL     : inout    bit;
+    SATA_LED_N0  : inout    bit;
+    SATA_LED_N1  : inout    bit;
+    ETH_LINK_LED : inout    bit;
+    ETH_SPD_LED  : inout    bit;
+    GPIO0_0      : inout    bit;
+    GPIO0_1      : inout    bit;
+    GPIO0_2      : inout    bit;
+    GPIO0_3      : inout    bit;
+    GPIO0_4      : inout    bit;
+    GPIO0_5      : inout    bit;
+    GPIO0_6      : inout    bit;
+    GPIO0_7      : inout    bit;
+    GPIO1_0      : inout    bit;
+    GPIO1_1      : inout    bit;
+    GPIO1_2      : inout    bit;
+    GPIO1_3      : inout    bit;
+    GPIO1_4      : inout    bit;
+    USB_REXT     : linkage  bit;
+    VDAC_R       : linkage  bit;
+    VDAC_G       : linkage  bit;
+    VDAC_B       : linkage  bit;
+    VDAC_CVBS0   : linkage  bit;
+    VDAC_CVBS1   : linkage  bit;
+    VDAC_REXT    : linkage  bit;
+    VDAC_REXTS   : linkage  bit;
+    VDAC_COMP    : linkage  bit;
+    VDAC_COMPS   : linkage  bit;
+    HDMI_REXT    : linkage  bit;
+    VSS          : linkage  bit_vector(0 to 12);
+    VCC15        : linkage  bit_vector(0 to 12);
+    DVDD12       : linkage  bit_vector(0 to 12);
+    DVDD33       : linkage  bit_vector(0 to 10);
+    AVDD12_SATA  : linkage  bit_vector(0 to 3);
+    AVDD33_SATA  : linkage  bit_vector(0 to 3);
+    AVDD_BAT     : linkage  bit;
+    AVDD33_RTC   : linkage  bit;
+    AVSS_RTC     : linkage  bit;
+    AVDD12_PLL   : linkage  bit;
+    AVSS_PLL     : linkage  bit;
+    AVDD33_PLL   : linkage  bit;
+    AVDD_EFUSE   : linkage  bit;
+    AVSS_VDAC    : linkage  bit_vector(0 to 1);
+    AVDD33_VDAC  : linkage  bit;
+    AVDD12_HDMI  : linkage  bit_vector(0 to 2);
+    AVSS_HDMI    : linkage  bit_vector(0 to 1);
+    AVDD12_FE    : linkage  bit;
+    AVSS12_FE    : linkage  bit;
+    AVSS33_FE    : linkage  bit;
+    AVDD33_FE    : linkage  bit;
+    AVDD33_USB0  : linkage  bit;
+    AVSS_USB     : linkage  bit_vector(0 to 1);
+    AVDD33_USB   : linkage  bit;
+    AVDD33_USB1  : linkage  bit
+);
+
+    use STD_1149_1_2001.all;
+    attribute COMPONENT_CONFORMANCE of HI3520D_TOP: entity
+        is "STD_1149_1_2001";
+
+    attribute PIN_MAP of HI3520D_TOP: entity is PHYSICAL_PIN_MAP;
+constant dw : PIN_MAP_STRING :=
+    " VSS : ( 2," &
+             "18," & 
+             "36," & 
+             "39," & 
+             "42," & 
+             "48," & 
+             "201," & 
+             "220," & 
+             "223," & 
+             "239," & 
+             "248," & 
+             "256," & 
+             "257)," &
+    " VCC15 : ( 5," &
+               "11," & 
+               "206," & 
+               "212," & 
+               "217," & 
+               "221," & 
+               "226," & 
+               "229," & 
+               "233," & 
+               "242," & 
+               "245," & 
+               "251," & 
+               "254)," &
+    " DVDD12 : ( 13," &
+                "26," & 
+                "56," & 
+                "66," & 
+                "89," & 
+                "105," & 
+                "136," & 
+                "170," & 
+                "184," & 
+                "197," & 
+                "211," & 
+                "222," & 
+                "236)," &
+    " DVDD33 : ( 24," &
+                "54," & 
+                "62," & 
+                "71," & 
+                "83," & 
+                "95," & 
+                "110," & 
+                "132," & 
+                "177," & 
+                "187," & 
+                "195)," &
+    " AVDD12_SATA : ( 32," &
+                     "46," & 
+                     "50," & 
+                     "51)," &
+    " AVDD33_SATA : ( 33," &
+                     "45," & 
+                     "49," & 
+                     "52)," &
+    " AVDD_BAT : 75," &
+    " AVDD33_RTC : 76," &
+    " AVSS_RTC : 77," &
+    " AVDD12_PLL : 78," &
+    " AVSS_PLL : 79," &
+    " AVDD33_PLL : 80," &
+    " AVDD_EFUSE : 84," &
+    " AVSS_VDAC : ( 117," &
+                   "126)," &
+    " AVDD33_VDAC : 121," &
+    " AVDD12_HDMI : ( 138," &
+                     "141," & 
+                     "147)," &
+    " AVSS_HDMI : ( 144," &
+                   "150)," &
+    " AVDD12_FE : 152," &
+    " AVSS12_FE : 154," &
+    " AVSS33_FE : 156," &
+    " AVDD33_FE : 158," &
+    " AVDD33_USB0 : 160," &
+    " AVSS_USB : ( 163," &
+                  "166)," &
+    " AVDD33_USB : 165," &
+    " AVDD33_USB1 : 169," &
+    " DDR_CLK1_P : 3," &
+    " DDR_CLK1_N : 4," &
+    " DDR_CKE : 6," &
+    " DDR_A10 : 7," &
+    " DDR_BA1 : 8," &
+    " DDR_A12 : 9," &
+    " DDR_A4 : 10," &
+    " DDR_A6 : 12," &
+    " DDR_A8 : 14," &
+    " DDR_A11 : 15," &
+    " DDR_A14 : 16," &
+    " DDR_A1 : 17," &
+    " JTAG_EN : 19," &
+    " JTAG_TDO : 20," &
+    " JTAG_TCK : 21," &
+    " JTAG_TMS : 22," &
+    " JTAG_TDI : 23," &
+    " JTAG_TRSTN : 25," &
+    " GPIO1_0 : 27," &
+    " GPIO1_1 : 28," &
+    " IR_IN : 29," &
+    " SATA_LED_N0 : 30," &
+    " SATA_LED_N1 : 31," &
+    " SATA_TX0P : 34," &
+    " SATA_TX0M : 35," &
+    " SATA_RX0M : 37," &
+    " SATA_RX0P : 38," &
+    " SATA_RX1P : 40," &
+    " SATA_RX1M : 41," &
+    " SATA_TX1M : 43," &
+    " SATA_TX1P : 44," &
+    " SATA_REXT : 47," &
+    " SFC_WP_IO2 : 53," &
+    " SFC_CS0N : 55," &
+    " SFC_DIO : 57," &
+    " SFC_CLK : 58," &
+    " SFC_HOLD_IO3 : 59," &
+    " SFC_CS1N : 60," &
+    " SFC_DOI : 61," &
+    " WDG_RSTN : 63," &
+    " RSTN : 64," &
+    " SPI_CSN1 : 65," &
+    " SPI_CSN0 : 67," &
+    " SPI_SCLK : 68," &
+    " SPI_SDO : 69," &
+    " SPI_SDI : 70," &
+    " GPIO1_2 : 72," &
+    " RTC_XOUT : 73," &
+    " RTC_XIN : 74," &
+    " XIN : 81," &
+    " XOUT : 82," &
+    " AIO_SD_TX : 85," &
+    " AIO_WS_TX : 86," &
+    " AIO_BCLK_TX : 87," &
+    " AIO_MCLK : 88," &
+    " AIO_SD_RX : 90," &
+    " AIO_WS_RX : 91," &
+    " AIO_BCLK_RX : 92," &
+    " VI_ADC_CLK : 93," &
+    " VIU1_CLK : 94," &
+    " VIU1_DAT0 : 96," &
+    " VIU1_DAT1 : 97," &
+    " VIU1_DAT2 : 98," &
+    " VIU1_DAT3 : 99," &
+    " VIU1_DAT4 : 100," &
+    " VIU1_DAT5 : 101," &
+    " VIU1_DAT6 : 102," &
+    " VIU1_DAT7 : 103," &
+    " VIU0_CLK : 104," &
+    " VIU0_DAT0 : 106," &
+    " VIU0_DAT1 : 107," &
+    " VIU0_DAT2 : 108," &
+    " VIU0_DAT3 : 109," &
+    " VIU0_DAT4 : 111," &
+    " VIU0_DAT5 : 112," &
+    " VIU0_DAT6 : 113," &
+    " VIU0_DAT7 : 114," &
+    " I2C_SCL : 115," &
+    " I2C_SDA : 116," &
+    " VDAC_B : 118," &
+    " VDAC_G : 119," &
+    " VDAC_R : 120," &
+    " VDAC_COMP : 122," &
+    " VDAC_REXT : 123," &
+    " VDAC_REXTS : 124," &
+    " VDAC_COMPS : 125," &
+    " VDAC_CVBS0 : 127," &
+    " VDAC_CVBS1 : 128," &
+    " VGA_HS : 129," &
+    " VGA_VS : 130," &
+    " HDMI_HOTPLUG : 131," &
+    " HDMI_SDA : 133," &
+    " HDMI_SCL : 134," &
+    " HDMI_CEC : 135," &
+    " HDMI_REXT : 137," &
+    " HDMI_TXCN : 139," &
+    " HDMI_TXCP : 140," &
+    " HDMI_TX0N : 142," &
+    " HDMI_TX0P : 143," &
+    " HDMI_TX1N : 145," &
+    " HDMI_TX1P : 146," &
+    " HDMI_TX2N : 148," &
+    " HDMI_TX2P : 149," &
+    " ETH_RXIN : 151," &
+    " ETH_RXIP : 153," &
+    " ETH_TXON : 155," &
+    " ETH_TXOP : 157," &
+    " ETH_RSET : 159," &
+    " USB0_DP : 161," &
+    " USB0_DM : 162," &
+    " USB_REXT : 164," &
+    " USB1_DM : 167," &
+    " USB1_DP : 168," &
+    " ETH_LINK_LED : 171," &
+    " ETH_SPD_LED : 172," &
+    " USB0_OVRCUR : 173," &
+    " USB0_PWREN : 174," &
+    " USB1_OVRCUR : 175," &
+    " USB1_PWREN : 176," &
+    " GPIO0_7 : 178," &
+    " GPIO0_4 : 179," &
+    " GPIO1_4 : 180," &
+    " GPIO1_3 : 181," &
+    " GPIO0_1 : 182," &
+    " GPIO0_3 : 183," &
+    " GPIO0_2 : 185," &
+    " GPIO0_0 : 186," &
+    " GPIO0_6 : 188," &
+    " GPIO0_5 : 189," &
+    " UART0_RXD : 190," &
+    " UART0_TXD : 191," &
+    " TEST_MODE : 192," &
+    " UART1_RTSN : 193," &
+    " UART1_RXD : 194," &
+    " UART1_CTSN : 196," &
+    " UART1_TXD : 198," &
+    " UART2_RXD : 199," &
+    " UART2_TXD : 200," &
+    " DDR_A2 : 202," &
+    " DDR_A13 : 203," &
+    " DDR_A9 : 204," &
+    " DDR_RESET_N : 205," &
+    " DDR_A7 : 207," &
+    " DDR_A5 : 208," &
+    " DDR_A0 : 209," &
+    " DDR_A3 : 210," &
+    " DDR_BA0 : 213," &
+    " DDR_BA2 : 214," &
+    " DDR_WE_N : 215," &
+    " DDR_ODT : 216," &
+    " DDR_CAS_N : 218," &
+    " DDR_RAS_N : 219," &
+    " DDR_DQ4 : 224," &
+    " DDR_DQ6 : 225," &
+    " DDR_DQ2 : 227," &
+    " DDR_DQ0 : 228," &
+    " DDR_DM1 : 230," &
+    " DDR_DQ11 : 231," &
+    " DDR_DQ13 : 232," &
+    " DDR_DQ15 : 234," &
+    " DDR_DQ9 : 235," &
+    " DDR_DQS0_P : 237," &
+    " DDR_DQS0_N : 238," &
+    " DDR_DQS1_P : 240," &
+    " DDR_DQS1_N : 241," &
+    " DDR_DQ12 : 243," &
+    " DDR_DQ8 : 244," &
+    " DDR_DQ14 : 246," &
+    " DDR_DQ10 : 247," &
+    " DDR_DM0 : 249," &
+    " DDR_DQ1 : 250," &
+    " DDR_DQ3 : 252," &
+    " DDR_DQ7 : 253," &
+    " DDR_DQ5 : 255";
+
+    attribute TAP_SCAN_CLOCK of JTAG_TCK : signal is (25000000,BOTH);
+    attribute TAP_SCAN_MODE of JTAG_TMS : signal is true;
+    attribute TAP_SCAN_IN of JTAG_TDI : signal is true;
+    attribute TAP_SCAN_OUT of JTAG_TDO : signal is true;
+    attribute TAP_SCAN_RESET of JTAG_TRSTN : signal is true;
+
+    attribute compliance_patterns of HI3520D_TOP: entity is
+        "(TEST_MODE) (1)";
+
+    attribute INSTRUCTION_LENGTH of HI3520D_TOP: entity is 8;
+    attribute INSTRUCTION_OPCODE of HI3520D_TOP: entity is
+        "extest (00000000)," &
+        "bypass (11111111)," &
+        "sample (00000001)," &
+        "preload (00000001)," &
+        "clamp (00000010)," &
+        "idcode (00000100)," &
+        "highz (00000011)," &
+        "ring_ctrl (00011010)," &
+        "hdmi_soft_addr_ctrl (00010100)," &
+        "epll_ctrl (00011110)," &
+        "hdmi_soft_data_ctrl (00010101)," &
+        "ddr_ctrl (00010001)," &
+        "rtc_ctrl (00011011)," &
+        "fephy_signal_setup_ctrl (00100011)," &
+        "test_ctrl (00010000)," &
+        "hdmi_ctrl (00010011)," &
+        "fephy_ctrl (00011101)," &
+        "sata_ctrl (00011000)," &
+        "ddr_apb_ctrl (00100010)," &
+        "occ_cross_ctrl (00100001)," &
+        "vdac_ctrl (00010110)," &
+        "ddr_debug_ctrl (00100000)," &
+        "dft_ddrphy_iddq_reg (00010010)," &
+        "usbphy_ctrl (00010111)," &
+        "sata_jtag_ctrl (00011001)," &
+        "vpll0_ctrl (00011111)," &
+        "apll_ctrl (00011100)," &
+        "sel_wr (10011100)," &
+        "mode_ctrl (10000000)," &
+        "reserve (11111000)," &
+        "selectwdr (10011000)," &
+        "selectwir (10010100)," &
+        "cpu_mbist_ctrl (10010101)," &
+        "set_scan_mode (00000111)," &
+        "clear_scan_mode (00001000)," &
+        "io_ctrlport_ctrlr_cfg (00001001)";
+    attribute INSTRUCTION_CAPTURE of HI3520D_TOP: entity is "00000001";
+    attribute INSTRUCTION_PRIVATE of HI3520D_TOP: entity is
+        "set_scan_mode," &
+        "clear_scan_mode," &
+        "cpu_mbist_ctrl," & 
+        "selectwdr," &
+        "selectwir," &
+        "io_ctrlport_ctrlr_cfg";
+
+    attribute IDCODE_REGISTER of HI3520D_TOP: entity is
+        "0001" &             --version
+        "0011010100011001" & --Part number
+        "01011001010" &      --Identity of the manufacturer
+        "1";                 --Required by IEEE Std 1149.1-1990
+
+    attribute REGISTER_ACCESS of HI3520D_TOP : entity is
+        "bypass(clear_scan_mode)," &
+        "ring_ctrl[10](ring_ctrl)," &
+        "hdmi_soft_addr_ctrl[9](hdmi_soft_addr_ctrl)," &
+        "epll_ctrl[62](epll_ctrl)," &
+        "hdmi_soft_data_ctrl[8](hdmi_soft_data_ctrl)," &
+        "ddr_ctrl[92](ddr_ctrl)," &
+        "rtc_ctrl[22](rtc_ctrl)," &
+        "fephy_signal_setup_ctrl[12](fephy_signal_setup_ctrl)," &
+        "test_ctrl[20](test_ctrl)," &
+        "hdmi_ctrl[4](hdmi_ctrl)," &
+        "fephy_ctrl[66](fephy_ctrl)," &
+        "sata_ctrl[114](sata_ctrl)," &
+        "ddr_apb_ctrl[45](ddr_apb_ctrl)," &
+        "occ_cross_ctrl[10](occ_cross_ctrl)," &
+        "vdac_ctrl[7](vdac_ctrl)," &
+        "ddr_debug_ctrl[3](ddr_debug_ctrl)," &
+        "dft_ddrphy_iddq_reg[3](dft_ddrphy_iddq_reg)," &
+        "usbphy_ctrl[7](usbphy_ctrl)," &
+        "sata_jtag_ctrl[2](sata_jtag_ctrl)," &
+        "vpll0_ctrl[62](vpll0_ctrl)," &
+        "apll_ctrl[62](apll_ctrl)," &
+        "sel_wr[6](sel_wr)," &
+        "mode_ctrl[10](mode_ctrl)," &
+        "reserve[32](reserve)," &
+        "selectwdr[1](selectwdr)," &
+        "selectwir[1](selectwir)," &
+        "cpu_mbist_ctrl[1](cpu_mbist_ctrl)," &
+        "oe_chain_reg[77](set_scan_mode)," &
+        "HI3520D_TOP_Io_CtrlPort_Ctrlr_Reg[38](io_ctrlport_ctrlr_cfg)";
+
+    attribute BOUNDARY_LENGTH of HI3520D_TOP : entity is 278;
+attribute BOUNDARY_REGISTER of HI3520D_TOP : entity is
+    "277 (bc_1, *, control, 1)," &
+    "276 (bc_1, DDR_A2, output3, x, 277, 1, weak0)," &
+    "275 (bc_1, *, control, 1)," &
+    "274 (bc_1, DDR_A13, output3, x, 275, 1, weak0)," &
+    "273 (bc_1, *, control, 1)," &
+    "272 (bc_1, DDR_A9, output3, x, 273, 1, weak0)," &
+    "271 (bc_1, *, control, 1)," &
+    "270 (bc_1, DDR_RESET_N, output3, x, 271, 1, weak0)," &
+    "269 (bc_1, *, control, 1)," &
+    "268 (bc_1, DDR_A7, output3, x, 269, 1, weak0)," &
+    "267 (bc_1, *, control, 1)," &
+    "266 (bc_1, DDR_A5, output3, x, 267, 1, weak0)," &
+    "265 (bc_1, *, control, 1)," &
+    "264 (bc_1, DDR_A0, output3, x, 265, 1, weak0)," &
+    "263 (bc_1, *, control, 1)," &
+    "262 (bc_1, DDR_A3, output3, x, 263, 1, weak0)," &
+    "261 (bc_1, *, control, 1)," &
+    "260 (bc_1, DDR_BA0, output3, x, 261, 1, weak0)," &
+    "259 (bc_1, *, control, 1)," &
+    "258 (bc_1, DDR_BA2, output3, x, 259, 1, weak0)," &
+    "257 (bc_1, *, control, 1)," &
+    "256 (bc_1, DDR_WE_N, output3, x, 257, 1, weak0)," &
+    "255 (bc_1, *, control, 1)," &
+    "254 (bc_1, DDR_ODT, output3, x, 255, 1, weak0)," &
+    "253 (bc_1, *, control, 1)," &
+    "252 (bc_1, DDR_CAS_N, output3, x, 253, 1, weak0)," &
+    "251 (bc_1, *, control, 1)," &
+    "250 (bc_1, DDR_RAS_N, output3, x, 251, 1, weak0)," &
+    "249 (bc_1, *, internal, 1)," &
+    "248 (bc_1, *, internal, 1)," &
+    "247 (bc_1, *, internal, 1)," &
+    "246 (bc_1, *, internal, 1)," &
+    "245 (bc_1, *, control, 1)," &
+    "244 (bc_1, DDR_DQ4, output3, x, 245, 1, weak0)," &
+    "243 (bc_1, DDR_DQ4, input, x)," &
+    "242 (bc_1, *, control, 1)," &
+    "241 (bc_1, DDR_DQ6, output3, x, 242, 1, weak0)," &
+    "240 (bc_1, DDR_DQ6, input, x)," &
+    "239 (bc_1, *, control, 1)," &
+    "238 (bc_1, DDR_DQ2, output3, x, 239, 1, weak0)," &
+    "237 (bc_1, DDR_DQ2, input, x)," &
+    "236 (bc_1, *, control, 1)," &
+    "235 (bc_1, DDR_DQ0, output3, x, 236, 1, weak0)," &
+    "234 (bc_1, DDR_DQ0, input, x)," &
+    "233 (bc_1, *, control, 1)," &
+    "232 (bc_1, DDR_DM1, output3, x, 233, 1, weak0)," &
+    "231 (bc_1, DDR_DM1, input, x)," &
+    "230 (bc_1, *, control, 1)," &
+    "229 (bc_1, DDR_DQ11, output3, x, 230, 1, weak0)," &
+    "228 (bc_1, DDR_DQ11, input, x)," &
+    "227 (bc_1, *, control, 1)," &
+    "226 (bc_1, DDR_DQ13, output3, x, 227, 1, weak0)," &
+    "225 (bc_1, DDR_DQ13, input, x)," &
+    "224 (bc_1, *, control, 1)," &
+    "223 (bc_1, DDR_DQ15, output3, x, 224, 1, weak0)," &
+    "222 (bc_1, DDR_DQ15, input, x)," &
+    "221 (bc_1, *, control, 1)," &
+    "220 (bc_1, DDR_DQ9, output3, x, 221, 1, weak0)," &
+    "219 (bc_1, DDR_DQ9, input, x)," &
+    "218 (bc_1, *, control, 1)," &
+    "217 (bc_1, DDR_DQS0_P, output3, x, 218, 1, weak0)," &
+    "216 (bc_1, DDR_DQS0_P, input, x)," &
+    "215 (bc_1, *, control, 1)," &
+    "214 (bc_1, DDR_DQS0_N, output3, x, 215, 1, weak0)," &
+    "213 (bc_1, DDR_DQS0_N, input, x)," &
+    "212 (bc_1, *, control, 1)," &
+    "211 (bc_1, DDR_DQS1_P, output3, x, 212, 1, weak0)," &
+    "210 (bc_1, DDR_DQS1_P, input, x)," &
+    "209 (bc_1, *, control, 1)," &
+    "208 (bc_1, DDR_DQS1_N, output3, x, 209, 1, weak0)," &
+    "207 (bc_1, DDR_DQS1_N, input, x)," &
+    "206 (bc_1, *, control, 1)," &
+    "205 (bc_1, DDR_DQ12, output3, x, 206, 1, weak0)," &
+    "204 (bc_1, DDR_DQ12, input, x)," &
+    "203 (bc_1, *, control, 1)," &
+    "202 (bc_1, DDR_DQ8, output3, x, 203, 1, weak0)," &
+    "201 (bc_1, DDR_DQ8, input, x)," &
+    "200 (bc_1, *, control, 1)," &
+    "199 (bc_1, DDR_DQ14, output3, x, 200, 1, weak0)," &
+    "198 (bc_1, DDR_DQ14, input, x)," &
+    "197 (bc_1, *, control, 1)," &
+    "196 (bc_1, DDR_DQ10, output3, x, 197, 1, weak0)," &
+    "195 (bc_1, DDR_DQ10, input, x)," &
+    "194 (bc_1, *, control, 1)," &
+    "193 (bc_1, DDR_DM0, output3, x, 194, 1, weak0)," &
+    "192 (bc_1, DDR_DM0, input, x)," &
+    "191 (bc_1, *, control, 1)," &
+    "190 (bc_1, DDR_DQ1, output3, x, 191, 1, weak0)," &
+    "189 (bc_1, DDR_DQ1, input, x)," &
+    "188 (bc_1, *, control, 1)," &
+    "187 (bc_1, DDR_DQ3, output3, x, 188, 1, weak0)," &
+    "186 (bc_1, DDR_DQ3, input, x)," &
+    "185 (bc_1, *, control, 1)," &
+    "184 (bc_1, DDR_DQ7, output3, x, 185, 1, weak0)," &
+    "183 (bc_1, DDR_DQ7, input, x)," &
+    "182 (bc_1, *, control, 1)," &
+    "181 (bc_1, DDR_DQ5, output3, x, 182, 1, weak0)," &
+    "180 (bc_1, DDR_DQ5, input, x)," &
+    "179 (bc_1, *, control, 1)," &
+    "178 (bc_1, DDR_CLK1_P, output3, x, 179, 1, weak0)," &
+    "177 (bc_1, *, control, 1)," &
+    "176 (bc_1, DDR_CLK1_N, output3, x, 177, 1, weak0)," &
+    "175 (bc_1, *, control, 1)," &
+    "174 (bc_1, DDR_CKE, output3, x, 175, 1, weak0)," &
+    "173 (bc_1, *, control, 1)," &
+    "172 (bc_1, DDR_A10, output3, x, 173, 1, weak0)," &
+    "171 (bc_1, *, control, 1)," &
+    "170 (bc_1, DDR_BA1, output3, x, 171, 1, weak0)," &
+    "169 (bc_1, *, control, 1)," &
+    "168 (bc_1, DDR_A12, output3, x, 169, 1, weak0)," &
+    "167 (bc_1, *, control, 1)," &
+    "166 (bc_1, DDR_A4, output3, x, 167, 1, weak0)," &
+    "165 (bc_1, *, control, 1)," &
+    "164 (bc_1, DDR_A6, output3, x, 165, 1, weak0)," &
+    "163 (bc_1, *, control, 1)," &
+    "162 (bc_1, DDR_A8, output3, x, 163, 1, weak0)," &
+    "161 (bc_1, *, control, 1)," &
+    "160 (bc_1, DDR_A11, output3, x, 161, 1, weak0)," &
+    "159 (bc_1, *, control, 1)," &
+    "158 (bc_1, DDR_A14, output3, x, 159, 1, weak0)," &
+    "157 (bc_1, *, control, 1)," &
+    "156 (bc_1, DDR_A1, output3, x, 157, 1, weak0)," &
+    "155 (bc_7, GPIO1_0, bidir, x, 154, 1, z)," &
+    "154 (bc_2, *, control, 1)," &
+    "153 (bc_7, GPIO1_1, bidir, x, 152, 1, z)," &
+    "152 (bc_2, *, control, 1)," &
+    "151 (bc_7, IR_IN, bidir, x, 150, 1, z)," &
+    "150 (bc_2, *, control, 1)," &
+    "149 (bc_7, SATA_LED_N0, bidir, x, 148, 1, z)," &
+    "148 (bc_2, *, control, 1)," &
+    "147 (bc_7, SATA_LED_N1, bidir, x, 146, 1, z)," &
+    "146 (bc_2, *, control, 1)," &
+    "145 (bc_7, SFC_WP_IO2, bidir, x, 144, 0, z)," &
+    "144 (bc_2, *, control, 0)," &
+    "143 (bc_7, SFC_CS0N, bidir, x, 142, 0, z)," &
+    "142 (bc_2, *, control, 0)," &
+    "141 (bc_7, SFC_DIO, bidir, x, 140, 0, z)," &
+    "140 (bc_2, *, control, 0)," &
+    "139 (bc_7, SFC_CLK, bidir, x, 138, 0, z)," &
+    "138 (bc_2, *, control, 0)," &
+    "137 (bc_7, SFC_HOLD_IO3, bidir, x, 136, 0, z)," &
+    "136 (bc_2, *, control, 0)," &
+    "135 (bc_7, SFC_CS1N, bidir, x, 134, 0, z)," &
+    "134 (bc_2, *, control, 0)," &
+    "133 (bc_7, SFC_DOI, bidir, x, 132, 0, z)," &
+    "132 (bc_2, *, control, 0)," &
+    "131 (bc_7, WDG_RSTN, bidir, x, 130, 1, z)," &
+    "130 (bc_2, *, control, 1)," &
+    "129 (bc_4, RSTN, input, x)," &
+    "128 (bc_7, SPI_CSN1, bidir, x, 127, 1, z)," &
+    "127 (bc_2, *, control, 1)," &
+    "126 (bc_7, SPI_CSN0, bidir, x, 125, 1, pull1)," &
+    "125 (bc_2, *, control, 1)," &
+    "124 (bc_7, SPI_SCLK, bidir, x, 123, 0, z)," &
+    "123 (bc_2, *, control, 0)," &
+    "122 (bc_7, SPI_SDO, bidir, x, 121, 0, z)," &
+    "121 (bc_2, *, control, 0)," &
+    "120 (bc_7, SPI_SDI, bidir, x, 119, 1, z)," &
+    "119 (bc_2, *, control, 1)," &
+    "118 (bc_7, GPIO1_2, bidir, x, 117, 1, z)," &
+    "117 (bc_2, *, control, 1)," &
+    "116 (bc_7, AIO_SD_TX, bidir, x, 115, 1, pull0)," &
+    "115 (bc_2, *, control, 1)," &
+    "114 (bc_7, AIO_WS_TX, bidir, x, 113, 0, z)," &
+    "113 (bc_2, *, control, 0)," &
+    "112 (bc_7, AIO_BCLK_TX, bidir, x, 111, 0, z)," &
+    "111 (bc_2, *, control, 0)," &
+    "110 (bc_7, AIO_MCLK, bidir, x, 109, 0, z)," &
+    "109 (bc_2, *, control, 0)," &
+    "108 (bc_7, AIO_SD_RX, bidir, x, 107, 1, z)," &
+    "107 (bc_2, *, control, 1)," &
+    "106 (bc_7, AIO_WS_RX, bidir, x, 105, 0, z)," &
+    "105 (bc_2, *, control, 0)," &
+    "104 (bc_7, AIO_BCLK_RX, bidir, x, 103, 0, z)," &
+    "103 (bc_2, *, control, 0)," &
+    "102 (bc_7, VI_ADC_CLK, bidir, x, 101, 0, z)," &
+    "101 (bc_2, *, control, 0)," &
+    "100 (bc_7, VIU1_CLK, bidir, x, 99, 1, z)," &
+    "99 (bc_2, *, control, 1)," &
+    "98 (bc_7, VIU1_DAT0, bidir, x, 97, 1, z)," &
+    "97 (bc_2, *, control, 1)," &
+    "96 (bc_7, VIU1_DAT1, bidir, x, 95, 1, z)," &
+    "95 (bc_2, *, control, 1)," &
+    "94 (bc_7, VIU1_DAT2, bidir, x, 93, 1, z)," &
+    "93 (bc_2, *, control, 1)," &
+    "92 (bc_7, VIU1_DAT3, bidir, x, 91, 1, z)," &
+    "91 (bc_2, *, control, 1)," &
+    "90 (bc_7, VIU1_DAT4, bidir, x, 89, 1, z)," &
+    "89 (bc_2, *, control, 1)," &
+    "88 (bc_7, VIU1_DAT5, bidir, x, 87, 1, z)," &
+    "87 (bc_2, *, control, 1)," &
+    "86 (bc_7, VIU1_DAT6, bidir, x, 85, 1, z)," &
+    "85 (bc_2, *, control, 1)," &
+    "84 (bc_7, VIU1_DAT7, bidir, x, 83, 1, z)," &
+    "83 (bc_2, *, control, 1)," &
+    "82 (bc_7, VIU0_CLK, bidir, x, 81, 1, z)," &
+    "81 (bc_2, *, control, 1)," &
+    "80 (bc_7, VIU0_DAT0, bidir, x, 79, 1, z)," &
+    "79 (bc_2, *, control, 1)," &
+    "78 (bc_7, VIU0_DAT1, bidir, x, 77, 1, z)," &
+    "77 (bc_2, *, control, 1)," &
+    "76 (bc_7, VIU0_DAT2, bidir, x, 75, 1, z)," &
+    "75 (bc_2, *, control, 1)," &
+    "74 (bc_7, VIU0_DAT3, bidir, x, 73, 1, z)," &
+    "73 (bc_2, *, control, 1)," &
+    "72 (bc_7, VIU0_DAT4, bidir, x, 71, 1, z)," &
+    "71 (bc_2, *, control, 1)," &
+    "70 (bc_7, VIU0_DAT5, bidir, x, 69, 1, z)," &
+    "69 (bc_2, *, control, 1)," &
+    "68 (bc_7, VIU0_DAT6, bidir, x, 67, 1, z)," &
+    "67 (bc_2, *, control, 1)," &
+    "66 (bc_7, VIU0_DAT7, bidir, x, 65, 1, z)," &
+    "65 (bc_2, *, control, 1)," &
+    "64 (bc_7, I2C_SCL, bidir, x, 63, 1, z)," &
+    "63 (bc_2, *, control, 1)," &
+    "62 (bc_7, I2C_SDA, bidir, x, 61, 1, z)," &
+    "61 (bc_2, *, control, 1)," &
+    "60 (bc_7, VGA_HS, bidir, x, 59, 0, z)," &
+    "59 (bc_2, *, control, 0)," &
+    "58 (bc_7, VGA_VS, bidir, x, 57, 0, z)," &
+    "57 (bc_2, *, control, 0)," &
+    "56 (bc_7, HDMI_HOTPLUG, bidir, x, 55, 1, z)," &
+    "55 (bc_2, *, control, 1)," &
+    "54 (bc_7, HDMI_SDA, bidir, x, 53, 1, z)," &
+    "53 (bc_2, *, control, 1)," &
+    "52 (bc_7, HDMI_SCL, bidir, x, 51, 1, z)," &
+    "51 (bc_2, *, control, 1)," &
+    "50 (bc_7, HDMI_CEC, bidir, x, 49, 1, z)," &
+    "49 (bc_2, *, control, 1)," &
+    "48 (bc_7, ETH_LINK_LED, bidir, x, 47, 1, z)," &
+    "47 (bc_2, *, control, 1)," &
+    "46 (bc_7, ETH_SPD_LED, bidir, x, 45, 1, z)," &
+    "45 (bc_2, *, control, 1)," &
+    "44 (bc_7, USB0_OVRCUR, bidir, x, 43, 1, z)," &
+    "43 (bc_2, *, control, 1)," &
+    "42 (bc_7, USB0_PWREN, bidir, x, 41, 1, z)," &
+    "41 (bc_2, *, control, 1)," &
+    "40 (bc_7, USB1_OVRCUR, bidir, x, 39, 1, z)," &
+    "39 (bc_2, *, control, 1)," &
+    "38 (bc_7, USB1_PWREN, bidir, x, 37, 1, z)," &
+    "37 (bc_2, *, control, 1)," &
+    "36 (bc_7, GPIO0_7, bidir, x, 35, 1, z)," &
+    "35 (bc_2, *, control, 1)," &
+    "34 (bc_7, GPIO0_4, bidir, x, 33, 1, z)," &
+    "33 (bc_2, *, control, 1)," &
+    "32 (bc_7, GPIO1_4, bidir, x, 31, 1, z)," &
+    "31 (bc_2, *, control, 1)," &
+    "30 (bc_7, GPIO1_3, bidir, x, 29, 1, z)," &
+    "29 (bc_2, *, control, 1)," &
+    "28 (bc_7, GPIO0_1, bidir, x, 27, 1, z)," &
+    "27 (bc_2, *, control, 1)," &
+    "26 (bc_7, GPIO0_3, bidir, x, 25, 1, z)," &
+    "25 (bc_2, *, control, 1)," &
+    "24 (bc_7, GPIO0_2, bidir, x, 23, 1, z)," &
+    "23 (bc_2, *, control, 1)," &
+    "22 (bc_7, GPIO0_0, bidir, x, 21, 1, z)," &
+    "21 (bc_2, *, control, 1)," &
+    "20 (bc_7, GPIO0_6, bidir, x, 19, 1, z)," &
+    "19 (bc_2, *, control, 1)," &
+    "18 (bc_7, GPIO0_5, bidir, x, 17, 1, z)," &
+    "17 (bc_2, *, control, 1)," &
+    "16 (bc_7, UART0_RXD, bidir, x, 15, 1, z)," &
+    "15 (bc_2, *, control, 1)," &
+    "14 (bc_7, UART0_TXD, bidir, x, 13, 1, z)," &
+    "13 (bc_2, *, control, 1)," &
+    "12 (bc_7, UART1_RTSN, bidir, x, 11, 1, z)," &
+    "11 (bc_2, *, control, 1)," &
+    "10 (bc_7, UART1_RXD, bidir, x, 9, 1, pull1)," &
+    "9 (bc_2, *, control, 1)," &
+    "8 (bc_7, UART1_CTSN, bidir, x, 7, 1, z)," &
+    "7 (bc_2, *, control, 1)," &
+    "6 (bc_7, UART1_TXD, bidir, x, 5, 1, z)," &
+    "5 (bc_2, *, control, 1)," &
+    "4 (bc_7, UART2_RXD, bidir, x, 3, 1, pull1)," &
+    "3 (bc_2, *, control, 1)," &
+    "2 (bc_7, UART2_TXD, bidir, x, 1, 1, z)," &
+    "1 (bc_2, *, control, 1)," &
+    "0 (bc_1, JTAG_EN, input, x)" ;
+
+    attribute oe_chain_info: BSDL_extension;
+    attribute oe_chain_info of HI3520D_TOP : entity is
+        --No.0 cell is most closed to TDO
+        --idx (pin, disable_value)
+        "0 (UART2_TXD, 1)," &
+        "1 (UART2_RXD, 1)," &
+        "2 (UART1_TXD, 1)," &
+        "3 (UART1_CTSN, 1)," &
+        "4 (UART1_RXD, 1)," &
+        "5 (UART1_RTSN, 1)," &
+        "6 (UART0_TXD, 1)," &
+        "7 (UART0_RXD, 1)," &
+        "8 (GPIO0_5, 1)," &
+        "9 (GPIO0_6, 1)," &
+        "10 (GPIO0_0, 1)," &
+        "11 (GPIO0_2, 1)," &
+        "12 (GPIO0_3, 1)," &
+        "13 (GPIO0_1, 1)," &
+        "14 (GPIO1_3, 1)," &
+        "15 (GPIO1_4, 1)," &
+        "16 (GPIO0_4, 1)," &
+        "17 (GPIO0_7, 1)," &
+        "18 (USB1_PWREN, 1)," &
+        "19 (USB1_OVRCUR, 1)," &
+        "20 (USB0_PWREN, 1)," &
+        "21 (USB0_OVRCUR, 1)," &
+        "22 (ETH_SPD_LED, 1)," &
+        "23 (ETH_LINK_LED, 1)," &
+        "24 (HDMI_CEC, 1)," &
+        "25 (HDMI_SCL, 1)," &
+        "26 (HDMI_SDA, 1)," &
+        "27 (HDMI_HOTPLUG, 1)," &
+        "28 (VGA_VS, 0)," &
+        "29 (VGA_HS, 0)," &
+        "30 (I2C_SDA, 1)," &
+        "31 (I2C_SCL, 1)," &
+        "32 (VIU0_DAT7, 1)," &
+        "33 (VIU0_DAT6, 1)," &
+        "34 (VIU0_DAT5, 1)," &
+        "35 (VIU0_DAT4, 1)," &
+        "36 (VIU0_DAT3, 1)," &
+        "37 (VIU0_DAT2, 1)," &
+        "38 (VIU0_DAT1, 1)," &
+        "39 (VIU0_DAT0, 1)," &
+        "40 (VIU0_CLK, 1)," &
+        "41 (VIU1_DAT7, 1)," &
+        "42 (VIU1_DAT6, 1)," &
+        "43 (VIU1_DAT5, 1)," &
+        "44 (VIU1_DAT4, 1)," &
+        "45 (VIU1_DAT3, 1)," &
+        "46 (VIU1_DAT2, 1)," &
+        "47 (VIU1_DAT1, 1)," &
+        "48 (VIU1_DAT0, 1)," &
+        "49 (VIU1_CLK, 1)," &
+        "50 (VI_ADC_CLK, 0)," &
+        "51 (AIO_BCLK_RX, 0)," &
+        "52 (AIO_WS_RX, 0)," &
+        "53 (AIO_SD_RX, 1)," &
+        "54 (AIO_MCLK, 0)," &
+        "55 (AIO_BCLK_TX, 0)," &
+        "56 (AIO_WS_TX, 0)," &
+        "57 (AIO_SD_TX, 1)," &
+        "58 (GPIO1_2, 1)," &
+        "59 (SPI_SDI, 1)," &
+        "60 (SPI_SDO, 0)," &
+        "61 (SPI_SCLK, 0)," &
+        "62 (SPI_CSN0, 1)," &
+        "63 (SPI_CSN1, 1)," &
+        "64 (WDG_RSTN, 1)," &
+        "65 (SFC_DOI, 0)," &
+        "66 (SFC_CS1N, 0)," &
+        "67 (SFC_HOLD_IO3, 0)," &
+        "68 (SFC_CLK, 0)," &
+        "69 (SFC_DIO, 0)," &
+        "70 (SFC_CS0N, 0)," &
+        "71 (SFC_WP_IO2, 0)," &
+        "72 (SATA_LED_N1, 1)," &
+        "73 (SATA_LED_N0, 1)," &
+        "74 (IR_IN, 1)," &
+        "75 (GPIO1_1, 1)," &
+        "76 (GPIO1_0, 1)";
+
+end HI3520D_TOP;
